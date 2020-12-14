@@ -9,17 +9,21 @@ public class OrderedArrayList<T extends Comparable<T>> extends NoNullArrayList<T
   }
 
   public boolean add(T item){
+    if (item == null) throw new IllegalArgumentException();
     super.add(this.orderIndex(item), item);
     return true;
   }
 
   public void add(int index, T item){
+    if (item == null) throw new IllegalArgumentException();
     super.add(this.orderIndex(item), item);
   }
 
   public T set(int index, T item){
+    if (item == null) throw new IllegalArgumentException();
+    T removed  = super.remove(index);
     super.add(this.orderIndex(item), item);
-    return super.remove(index);
+    return removed;
   }
 
   private int orderIndex(T item){
